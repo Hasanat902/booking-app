@@ -8,7 +8,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import {format} from 'date-fns';
 
-const Header = () => {
+const Header = ({type}) => {
     const [openDate, setOpenDate] = useState(false);
     const [date, setDate] = useState([
         {
@@ -36,7 +36,7 @@ const Header = () => {
 
     return (
         <div className='header'>
-            <div className="headerContainer">
+            <div className={type === 'list' ? "headerContainer listMode" : "headerContainer"}>
                 <div className="headerList">
                     <div className="headerListItem active">
                         <FontAwesomeIcon icon={faBed} />
@@ -59,6 +59,8 @@ const Header = () => {
                         <span>Airport taxis</span>
                     </div>
                 </div>
+                {type !== 'list' && 
+                <>
                 <h1 className="headerTitle">A lifetime of discounts? It's genius.</h1>
                 <p className='headerDesc'>Get rewarded for your travels - unlock instant savings of 15% or more with a free BookingApp account</p>
                 <button className='headerBtn'>Sign In / Register</button>
@@ -112,6 +114,8 @@ const Header = () => {
                         <button className="headerBtn">Search</button>
                     </div>
                 </div>
+                </>
+                }
             </div>
         </div>
     );
